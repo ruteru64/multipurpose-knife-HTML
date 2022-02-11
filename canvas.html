@@ -1,0 +1,53 @@
+<html>
+    <head>
+        <title>canvas</title>
+    </head>
+    <body>
+        <canvas id="mainc" width="400" height="400"></canvas>
+        <script>
+            const canvas = document.getElementById("mainc");
+            let isClick = false;
+            onload = function(){
+                setup();
+                canvas.addEventListener("mousedown",onDown,false);
+                canvas.addEventListener("mouseup",onUp,false);
+                canvas.addEventListener("mouseover",onOver,false);
+                canvas.addEventListener("mouseout",onOut,false);
+                canvas.addEventListener("click",onClick,false);
+                canvas.addEventListener("mousemove",onMove,false);
+            }
+            function setup(){
+                console.log("setup");
+                canvas.width = document.body.clientWidth;
+                canvas.height = document.body.clientHeight;
+                canvas.width = canvas.width * 99 / 100;
+                canvas.height = canvas.height * 99 / 100;
+                const csv = canvas.getContext('2d');
+                csv.fillStyle = "rgb(ff,ff,ff)";
+                csv.fillRect(0,0,canvas.width,canvas.height);
+            }
+            function onDown(event) {
+                isClick = true;
+                console.log("Down");
+            }
+            function onUp(event) {
+                isClick = false;
+                console.log("Up");
+            }
+            function onOver(event){
+                console.log("onOver");
+            }
+            function onClick(event){
+                console.log("onClick")
+            }
+            function onOut(event){
+                console.log("onOut")
+            }
+            const onMove = (event) => {
+                if (isClick){
+                    console.log(event.x,event.y);
+                }
+            }
+        </script>
+    </body>
+</html>
